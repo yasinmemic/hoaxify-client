@@ -1,0 +1,21 @@
+language: node_js
+
+node_js:
+  - 'stable'
+
+cache:
+  directories:
+  - node_modules
+
+script:
+  - npm run build
+
+deploy:
+  provider: heroku
+  app: hoaxify-client
+  local_dir: build
+  api_key:
+    secure: $HEROKU_API_KEY
+  on:
+    repo: hoaxify-client
+    branch: master
