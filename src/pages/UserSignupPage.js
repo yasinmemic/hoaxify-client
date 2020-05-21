@@ -5,6 +5,7 @@ import ButtonWithProgress from '../components/ButtonWithProgress'
 import { useApiProgress } from '../shared/ApiProgress';
 import { useDispatch } from 'react-redux'
 import { signupHandler } from '../redux/actions/authActions'
+import { BACKEND_URL } from '../Constants';
 
 const UserSignupPage = (props) => {
 
@@ -54,8 +55,8 @@ const UserSignupPage = (props) => {
 
     const { t } = useTranslation();
 
-    const pendingApiCallSignup = useApiProgress('post', '/api/1.0/users');
-    const pendingApiCallSignin = useApiProgress('post', '/api/1.0/auth');
+    const pendingApiCallSignup = useApiProgress('post', BACKEND_URL+'api/1.0/users');
+    const pendingApiCallSignin = useApiProgress('post', BACKEND_URL+'api/1.0/auth');
 
     const pendingApiCall = pendingApiCallSignin || pendingApiCallSignup;
 

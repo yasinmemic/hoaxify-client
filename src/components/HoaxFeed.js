@@ -5,6 +5,7 @@ import HoaxView from './HoaxView';
 import Spinner from '../components/Spinner';
 import { useApiProgress } from '../shared/ApiProgress';
 import { useParams } from 'react-router-dom';
+import { BACKEND_URL } from '../Constants';
 
 const HoaxFeed = () => {
 
@@ -12,8 +13,8 @@ const HoaxFeed = () => {
     const [hoaxes, setHoaxes] = useState({ content: [], last: true, number: 0 });
     const [newHoaxCount, setNewHoaxCount] = useState(0);
 
-    const path = username ? `/api/1.0/users/${username}/hoaxes?page=` : '/api/1.0/hoaxes?page='
-    const initialHoaxLoadProgress = useApiProgress('get', path,true);
+    const path = username ? `${BACKEND_URL}api/1.0/users/${username}/hoaxes?page=` : BACKEND_URL + 'api/1.0/hoaxes?page='
+    const initialHoaxLoadProgress = useApiProgress('get', path, true);
 
     let lastHoaxId = 0;
     let firstHoaxId = 0;
@@ -22,10 +23,10 @@ const HoaxFeed = () => {
         const lastHoaxIndex = hoaxes.content.length - 1;
         lastHoaxId = hoaxes.content[lastHoaxIndex].id;
     }
-  
-    const newPath = username ? `/api/1.0/users/${username}/hoaxes/${firstHoaxId}?direction=after` : `/api/1.0/hoaxes/${firstHoaxId}?direction=after`;
+
+    const newPath = username ? `${BACKEND_URL}api/1.0/users/${username}/hoaxes/${firstHoaxId}?direction=after` : `${BACKEND_URL}api/1.0/hoaxes/${firstHoaxId}?direction=after`;
     const loadNewHoaxesProgress = useApiProgress('get', newPath, true);
-    const oldPath = username ? `/api/1.0/users/${username}/hoaxes/${lastHoaxId}` : `/api/1.0/hoaxes/${lastHoaxId}`;
+    const oldPath = username ? `${BACKEND_URL}api/1.0/users/${username}/hoaxes/${lastHoaxId}` : `${BACKEND_URL}api/1.0/hoaxes/${lastHoaxId}`;
     const loadOldHoaxesProgress = useApiProgress('get', oldPath, true);
 
     useEffect(() => {
@@ -109,14 +110,14 @@ const HoaxFeed = () => {
 
             {
                 content.map(hoax => (
-                    <HoaxView hoax={hoax} key={hoax.id} onDeleteHoax = {onDeleteHoaxSuccess}/>
+                    <HoaxView hoax={hoax} key={hoax.id} onDeleteHoax={onDeleteHoaxSuccess} />
                 ))
             }
             {
-                !last && 
-                <div className="alert alert-secondary text-center" 
-                onClick={loadOldHoaxesProgress ? () => { } : () => loadOldHoaxes()} 
-                style={{ cursor: loadOldHoaxesProgress ? 'not-allowed' : 'pointer' }}>
+                !last &&
+                <div className="alert alert-secondary text-center"
+                    onClick={loadOldHoaxesProgress ? () => { } : () => loadOldHoaxes()}
+                    style={{ cursor: loadOldHoaxesProgress ? 'not-allowed' : 'pointer' }}>
                     {
                         loadOldHoaxesProgress ? <Spinner /> : t('Load old hoaxes')
                     }

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useApiProgress } from '../shared/ApiProgress';
 import Spinner from '../components/Spinner';
 import HoaxFeed from '../components/HoaxFeed';
+import { BACKEND_URL } from '../Constants';
 
 const UserPage = () => {
 
@@ -15,7 +16,7 @@ const UserPage = () => {
     const [notFound, setNotFound] = useState(false);
     const { t } = useTranslation();
 
-    const pendingApiCall = useApiProgress('get', '/api/1.0/users/' + username, true);
+    const pendingApiCall = useApiProgress('get', BACKEND_URL+'api/1.0/users/' + username, true);
 
     useEffect(() => {
         setNotFound(false);

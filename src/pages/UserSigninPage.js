@@ -5,6 +5,7 @@ import ButtonWithProgress from '../components/ButtonWithProgress'
 import { useApiProgress } from '../shared/ApiProgress'
 import { useDispatch } from 'react-redux'
 import { loginHandler } from '../redux/actions/authActions'
+import { BACKEND_URL } from '../Constants'
 
 const UserSigninPage = (props) => {
 
@@ -37,7 +38,7 @@ const UserSigninPage = (props) => {
         }
     }
 
-    const pendingApiCall = useApiProgress('post', '/api/1.0/auth');
+    const pendingApiCall = useApiProgress('post', BACKEND_URL+'api/1.0/auth');
     const { t } = useTranslation();
     const buttonEnabled = password && username;
     return (

@@ -1,0 +1,1 @@
+export const BACKEND_URL = "https://hoaxify.herokuapp.com/";

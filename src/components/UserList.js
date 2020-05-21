@@ -4,13 +4,14 @@ import { useTranslation } from 'react-i18next'
 import UserListItem from './UserListItem';
 import { useApiProgress } from '../shared/ApiProgress';
 import Spinner from './Spinner';
+import { BACKEND_URL } from '../Constants';
 
 
 const UserList = () => {
 
     const [page, setPage] = useState({ content: [], number: 0, size: 3 });
     const [loadFailure, setLoadFailure] = useState(false);
-    const pendingApiCall = useApiProgress('get', '/api/1.0/users?page');
+    const pendingApiCall = useApiProgress('get', BACKEND_URL+'api/1.0/users?page');
 
     useEffect(() => {
         loadUsers();

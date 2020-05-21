@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { deleteHoax } from '../api/apiCalls';
 import Modal from './Modal';
 import { useApiProgress } from '../shared/ApiProgress';
+import { BACKEND_URL } from '../Constants';
 
 const HoaxView = (props) => {
     const loggedInUser = useSelector(store => store.username)
@@ -25,7 +26,7 @@ const HoaxView = (props) => {
     const onClickCancel = () => {
         setModalVisible(false);
     }
-    const pendingApiCall = useApiProgress('delete', '/api/1.0/hoaxes/' + id, true);
+    const pendingApiCall = useApiProgress('delete', BACKEND_URL+'api/1.0/hoaxes/' + id, true);
     return (
         <>
             <div className="card p-1">
@@ -54,7 +55,7 @@ const HoaxView = (props) => {
                 {fileAttachment && (
                     <div className="pl-5">
                         {fileAttachment.fileType.startsWith('image') && (
-                            <img className="img-fluid" src={'images/attachments/' + fileAttachment.name} alt="attachment"></img>
+                            <img className="img-fluid" src={BACKEND_URL+'images/attachments/' + fileAttachment.name} alt="attachment"></img>
                         )
                         }
                         {!fileAttachment.fileType.startsWith('image') && (

@@ -9,6 +9,7 @@ import { useApiProgress } from '../shared/ApiProgress';
 import ButtonWithProgress from './ButtonWithProgress';
 import { updateSuccess, logoutSuccess } from '../redux/actions/authActions'
 import Modal from './Modal';
+import {BACKEND_URL} from '../Constants';
 
 const ProfileCard = (props) => {
 
@@ -17,8 +18,8 @@ const ProfileCard = (props) => {
     const { username, displayName, image } = user;
     const routeParams = useParams();
     const pathUsername = routeParams.username;
-    const pendingApiCall = useApiProgress('put', '/api/1.0/users/' + username);
-    const pendingApiCallDeleteUser = useApiProgress('delete', '/api/1.0/users/' + username, true)
+    const pendingApiCall = useApiProgress('put', BACKEND_URL+'api/1.0/users/' + username);
+    const pendingApiCallDeleteUser = useApiProgress('delete',  BACKEND_URL+'api/1.0/users/' + username, true)
     const [inEdit, setInEdit] = useState(false);
     const [updatedDisplayName, setUpdatedDisplayName] = useState()
     const [editable, setEditable] = useState(false);

@@ -7,6 +7,7 @@ import { postHoax, postHoaxAttachment } from '../api/apiCalls';
 import { useApiProgress } from '../shared/ApiProgress';
 import Input from './Input'
 import AutoUploadImage from './AutoUploadImage';
+import { BACKEND_URL } from '../Constants';
 
 const HoaxSubmit = () => {
     const { image } = useSelector((store) => ({
@@ -30,8 +31,8 @@ const HoaxSubmit = () => {
 
     const { t } = useTranslation();
 
-    const pendingApiCall = useApiProgress('post', '/api/1.0/hoaxes', true);
-    const pendingFileUpload = useApiProgress('post', '/api/1.0/hoax-attachments', true);
+    const pendingApiCall = useApiProgress('post', BACKEND_URL+'api/1.0/hoaxes', true);
+    const pendingFileUpload = useApiProgress('post', BACKEND_URL+'api/1.0/hoax-attachments', true);
 
 
     useEffect(() => {

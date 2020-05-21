@@ -1,5 +1,6 @@
 import React from 'react';
 import defaultPicture from '../assets/profile.png'
+import { BACKEND_URL } from '../Constants';
 
 const ProfilePicture = (props) => {
 
@@ -8,7 +9,7 @@ const ProfilePicture = (props) => {
     let imageSource = defaultPicture;
 
     if (image) {
-        imageSource = 'images/profile/' + image;
+        imageSource = BACKEND_URL+'images/profile/' + image;
     }
 
     let clsName = "rounded-circle shadow";
