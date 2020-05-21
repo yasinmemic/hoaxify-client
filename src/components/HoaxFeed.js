@@ -13,8 +13,8 @@ const HoaxFeed = () => {
     const [hoaxes, setHoaxes] = useState({ content: [], last: true, number: 0 });
     const [newHoaxCount, setNewHoaxCount] = useState(0);
 
-    const path = username ? `${BACKEND_URL}api/1.0/users/${username}/hoaxes?page=` : BACKEND_URL + 'api/1.0/hoaxes?page='
-    const initialHoaxLoadProgress = useApiProgress('get', path, true);
+    const path = username ? `${BACKEND_URL}api/1.0/users/${username}/hoaxes?page=` : `${BACKEND_URL}api/1.0/hoaxes?page=`
+    const initialHoaxLoadProgress = useApiProgress('get', path);
 
     let lastHoaxId = 0;
     let firstHoaxId = 0;
