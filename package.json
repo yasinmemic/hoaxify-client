@@ -9,7 +9,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "i18next": "^19.3.4",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.3.4",
